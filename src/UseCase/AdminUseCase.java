@@ -2,13 +2,11 @@ package UseCase;
 
 import java.util.List;
 import java.util.Scanner;
-
 import CustomColour.ConsoleColors;
 import DaoClasses.DaoImplement;
 import DaoClasses.DaoInterfaces;
 import Model.Department;
 import Model.Employee;
-//import Model.Employee;
 import Model.EmployeeLeave;
 
 public class AdminUseCase {

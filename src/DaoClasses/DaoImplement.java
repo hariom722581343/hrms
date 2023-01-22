@@ -21,7 +21,7 @@ public class DaoImplement implements DaoInterfaces{
 		String msg = ConsoleColors.RED_BOLD +"Insertion Unsuccessful...";
 		
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			PreparedStatement ps = con.prepareStatement("select * from department where dept_id = ? ");
 			ps.setInt(1, dept_id);
 			
@@ -58,7 +58,7 @@ public class DaoImplement implements DaoInterfaces{
 		String msg = ConsoleColors.RED_BOLD +"Name Changed Unsuccessful...";
 		
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			
 			PreparedStatement ps = con.prepareStatement("select * from Employee where emp_name = ? and emp_password = ?");
 			ps.setString(1, name);
@@ -70,11 +70,11 @@ public class DaoImplement implements DaoInterfaces{
 			if(rs.next()) {
 			
 		 		
-				PreparedStatement ps = con.prepareStatement("update Employee set emp_name = ? where emp_password = ?");
-				ps.setString(1, newName);
-				ps.setString(2, password);
+				PreparedStatement ps1 = con.prepareStatement("update Employee set emp_name = ? where emp_password = ?");
+				ps1.setString(1, newName);
+				ps1.setString(2, password);
 				
-				int x1  = ps.executeUpdate();
+				int x1  = ps1.executeUpdate();
 				if(x1 > 0)
 					msg = ConsoleColors.GREEN_BOLD +"Name Changed Successfully";	
 			}else {
@@ -97,7 +97,7 @@ public class DaoImplement implements DaoInterfaces{
 	String msg = ConsoleColors.RED_BOLD +"Password Changed Unsuccessful...";
 		
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			
 			PreparedStatement ps = con.prepareStatement("select * from Employee where emp_name = ? and emp_password = ?");
 			ps.setString(1, name);
@@ -138,7 +138,7 @@ public class DaoImplement implements DaoInterfaces{
 		Employee  emp = null;
 		
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			
 			PreparedStatement ps = con.prepareStatement("select emp_id,emp_name,emp_password,emp_dept_id, dept_name from employee inner join department on employee.emp_dept_id = department.dept_id where employee.emp_password =?");
 			ps.setString(1,password);
@@ -162,7 +162,7 @@ public class DaoImplement implements DaoInterfaces{
 String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 		
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			
 				  Scanner sc = new Scanner(System.in);
 				  System.out.println(ConsoleColors.WHITE_UNDERLINED +"Enter Detarment ID");
@@ -195,7 +195,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
         List<Department> dept = new ArrayList<>();
 		
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			
 			
 				PreparedStatement ps = con.prepareStatement("select * from Department ");
@@ -220,7 +220,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
         String msg = ConsoleColors.RED_BOLD +"Department Updation Unsuccessful...";
 		
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			
 			PreparedStatement ps = con.prepareStatement("select * from Department where dept_id = ?");
 			ps.setInt(1, dept_id);
@@ -257,7 +257,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 		 String msg = ConsoleColors.RED_BOLD +"Employee Transfer  Unsuccessful...";
 			
 			
-			try(Connection con = DaoConnection.getConnection()){
+			try(Connection con = DaoConnection.provideConnection()){
 					PreparedStatement ps = con.prepareStatement("update Employee set emp_dept_id  = ? where emp_id = ?");
 					ps.setInt(1,dept_id);
 					ps.setInt(2, emp_id);
@@ -281,7 +281,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 		String msg = ConsoleColors.RED_BOLD +"Leave Apply Unsuccessful...";
 			
 			
-			try(Connection con = DaoConnection.getConnection()){
+			try(Connection con = DaoConnection.provideConnection()){
 				
 				PreparedStatement ps = con.prepareStatement("select * from Employee where  emp_password = ? ");
 		
@@ -322,7 +322,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 		
 		
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			
 				PreparedStatement ps = con.prepareStatement("select employee.emp_id, employee.emp_name,leaveApllication.leave_day,leaveApllication.status from employee inner join leaveApllication on employee.emp_id = leaveApllication.emp_id;");				
 			    
@@ -340,7 +340,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 	@Override
 	public String leavePermit( int emp_id, String Status) {
 		String msg = ConsoleColors.RED_BOLD +"Error in Processing";
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 	
 				PreparedStatement ps = con.prepareStatement("update leaveApllication set status = ? where emp_id = ?  ");
 				ps.setString(1,Status);
@@ -366,7 +366,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 		EmployeeLeave empLeave = null;
 
 
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			PreparedStatement ps = con.prepareStatement("select * from  Employee where  emp_password = ?  ");
 			
 			ps.setString(1,password);
@@ -393,7 +393,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 	public int validateAdmin(String admin_name) {
 		int number = 0;
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			PreparedStatement ps = con.prepareStatement("select * from  admin where admin_name = ?");
 			ps.setString(1,admin_name);
 	
@@ -436,7 +436,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 	public List<Employee> getAllEmp() {
 		List<Employee> emp = new ArrayList<>();
 
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			
 				PreparedStatement ps = con.prepareStatement("select emp_id,emp_name,emp_password,emp_dept_id, dept_name from employee inner join department on employee.emp_dept_id = department.dept_id");				
 				
@@ -461,7 +461,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 	public int validateEmployee(String emp_name) {
 int number = 0;
 		
-		try(Connection con = DaoConnection.getConnection()){
+		try(Connection con = DaoConnection.provideConnection()){
 			PreparedStatement ps = con.prepareStatement("select * from  employee where emp_name = ?");
 			ps.setString(1,emp_name);
 	
@@ -499,7 +499,4 @@ int number = 0;
 	
 		return number;
 	}
-
-	
-
 }

@@ -22,4 +22,5 @@ public EmployeeLeave getLeaveStatusById( String password);
 public int validateAdmin(String admin_name);
 public List<Employee> getAllEmp();
 public int validateEmployee(String emp_name);
+public String updateEmpPassword(String name, String password, String newPassword);
 }

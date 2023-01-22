@@ -1,7 +1,7 @@
 package Model;
 
 public class Department {
-private int dept_id;
+private static int dept_id;
 private String dept_name;
 public Department(int dept_id, String dept_name) {
 	super();
@@ -10,7 +10,7 @@ public Department(int dept_id, String dept_name) {
 }
 
 
-public int getDept_id() {
+public static int getDept_id() {
 	return dept_id;
 }
 public void setDept_id(int dept_id) {
