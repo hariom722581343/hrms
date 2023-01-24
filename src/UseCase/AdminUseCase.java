@@ -18,11 +18,11 @@ public class AdminUseCase {
 		System.out.println(ConsoleColors.BLUE_BACKGROUND_BRIGHT+ConsoleColors.BLACK_BOLD  +"* Welcome To Admin Portal *  "+ConsoleColors.RESET);
 		System.out.println("   ");
 		System.out.println(ConsoleColors.YELLOW_UNDERLINED +"Please Enter Your Name");
-		String adm_name = sc.nextLine();
+		String admin_name = sc.nextLine();
 
 	   
 		DaoInterfaces di = new DaoImplement();
-		int admin_access = di.validateAdmin(adm_name);
+		int admin_access = di.validateAdmin(admin_name);
 		
 	    
 		if(admin_access == 123) {

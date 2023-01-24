@@ -460,7 +460,7 @@ String msg = ConsoleColors.RED_BOLD +"Department Insertion Unsuccessful...";
 
 	@Override
 	public int validateEmployee(String emp_name) {
-int number = 0;
+     int number = 0;
 		
 		try(Connection con = DaoConnection.provideConnection()){
 			PreparedStatement ps = con.prepareStatement("select * from  employee where emp_name = ?");
@@ -470,7 +470,7 @@ int number = 0;
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {			   
 				    System.out.println(ConsoleColors.YELLOW_UNDERLINED +"Please Confirm Your Password");
-				    String admin_pass = sc1.next();
+				    String admin_pass = sc1.nextLine();
 				    
 				    
 					PreparedStatement ps1 = con.prepareStatement("select * from  employee where emp_pass = ?");
