@@ -1,6 +1,6 @@
-# uppity-vase-454 
 
 <h1>Human Resource Management System</h1>
+Efficiently manage your organization's workforce with our HRMS-Clone - the ultimate solution for Human Resource Management.
  
 # The Basic Prerequisites of this Applications are.
 - [x] Should Have a MySQL Server and a Database Created.
